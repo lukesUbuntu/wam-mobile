@@ -4,13 +4,16 @@
       <ion-item class="item-remove-animate item-avatar item-icon-right"
                 ng-repeat="news in news_items" type="item-text-wrap"
                 href="#/tab/news/{{news.id}}">
-        <h2>{{news.name}}</h2>
+        <h2 class="list_heading">{{news.name}}</h2>
         <p>{{news.description | limitTo:150}}</p>
+        <p class="kilo_news wam_right wam_top">{{news.distance}}<small>kms</small></p>
         <i class="icon ion-chevron-right icon-accessory"></i>
 
+
+        <!-- We will used it if we have time
         <ion-option-button class="button-assertive" ng-click="remove(event)">
           Delete
-        </ion-option-button>
+        </ion-option-button>-->
       </ion-item>
     </ion-list>
   </ion-content>

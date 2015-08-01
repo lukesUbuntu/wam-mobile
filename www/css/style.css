@@ -3,6 +3,24 @@
     width:100%;
     height:100%;
 }
+.take_photo{
+    width:300px;
+    height:300px;
+}
+.wam_right{
+    float:right;
+}
+.wam_top{
+    margin-top:-30px;
+}
+.map-canvas-detail{
+    width:100%;
+    height:150px;
+}
 .define_default{
     margin-top:-20px !important;
+}
+/*----------------------------*/
+.list_heading{
+    font-weigt:bold;
 }
