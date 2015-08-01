@@ -20,11 +20,7 @@ app.controller('EventCtrl', function($scope, wamApi) {
             longitude : 174.777290,
             latitude : -41.306481
         }
-        /*
-        $scope.chats = Chats.all();
-        $scope.remove = function(chat) {
-            Chats.remove(chat);
-        };*/
+
         wamApi('getEvents', prams).then(function (response) {
             console.log("getEvents", response)
             if (response.success) {
@@ -43,7 +39,7 @@ app.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
 */
 //Event controller
 /*
-app.controller('EventDetailCtrl', function($scope,$stateParams) {
+app.controller('EventDetailCtrl', function($scope,$stateParams,events) {
     $scope.event = event.get($stateParams.eventId);
 })
 */
