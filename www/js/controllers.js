@@ -1,6 +1,6 @@
 //need to replace with phone locations
 var prams = {
-    //getgps data
+    //get gps data
     //longitude=174.777290&latitude=-41.306481
     longitude : 174.777290,
     latitude : -41.306481
@@ -27,9 +27,9 @@ app.controller('NewsCtrl', function($scope,$ionicLoading,wamApi) {
     wamApi('getNews', prams).then(function (response) {
         //console.log("getNews", response)
         if (response.success) {
-            var $data = JSON.parse(response.data);
-            console.log("$data",$data)
-            $scope.news_items = $data;
+           // var $data = JSON.parse(response.data);
+            console.log("$data",response.data)
+            $scope.news_items = response.data;
             $scope.hide();
         }
 
@@ -59,9 +59,9 @@ app.controller('EventCtrl', function($scope, $ionicLoading,wamApi) {
     wamApi('getEvents', prams).then(function (response) {
         //console.log("getEvents", response)
         if (response.success) {
-            var $data = JSON.parse(response.data);
-            console.log("$data",$data.events)
-            $scope.event_items = $data.events;
+            // var $data = JSON.parse(response.data);
+            console.log("$data",response.data)
+            $scope.event_items = response.data;
             $scope.hide();
         }
 
@@ -79,11 +79,14 @@ app.controller('EventDetailCtrl', function($scope, $state) {
 
 app.controller('NewsDetailCtrl', function($scope, $state) {
     $scope.newsId = $state.params.newsId;
+
+
 })
 
 //Road controller
 app.controller('RoadCtrl', function($scope , $cordovaCamera) {
     $scope.pictureUrl = "http://placehold.it/300x300";
+
 
 
     $scope.takePicture = function(options){
