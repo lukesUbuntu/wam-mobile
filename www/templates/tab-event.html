@@ -2,10 +2,8 @@
     <ion-content>
         <ion-list>
             <ion-item class="item-remove-animate item-avatar item-icon-right"
-                      ng-repeat="event in events" type="item-text-wrap"
+                      ng-repeat="event in event_items" type="item-text-wrap"
                       href="#/tab/event/{{event.id}}">
-
-
                 <h2>{{event.name}}</h2>
                 <p>{{event.description | limitTo:150}}</p>
                 <i class="icon ion-chevron-right icon-accessory"></i>
