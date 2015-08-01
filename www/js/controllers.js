@@ -75,15 +75,78 @@ app.controller('EventDetailCtrl', function($scope, $state) {
     $scope.eventId = $state.params.eventId;
 })
 
+//Event Details controller
 
+app.controller('NewsDetailCtrl', function($scope, $state) {
+    $scope.newsId = $state.params.newsId;
+})
 
 //Road controller
-app.controller('RoadCtrl', function($scope) {
+app.controller('RoadCtrl', function($scope , $cordovaCamera) {
+    $scope.pictureUrl = "http://placehold.it/300x300";
 
+
+    $scope.takePicture = function(options){
+        //define the options for images Url path and type
+        var options = {
+            destinationType: Camera.DestinationType.DATA_URL,
+            encodingType: Camera.EncodingType.JPEG
+        }
+        $cordovaCamera.getPicture({})
+            .then(function(data){
+
+                console.log('camera data:' + angular.toJson(data));
+
+               $scope.pictureUrl= 'data:image/jpeg;base64,' + data;
+
+        },function(error){
+                console.log('camera error:' + angular.toJson(data));
+        });
+    }
 })
 
 
 //Weather
-app.controller('WeatherCtrl', function($scope) {
+app.controller('WeatherCtrl', function($scope, $cordovaGeolocation, $ionicPlatform) {
+
+
+    function showMap(coords) {
+        var marker=new google.maps.Marker({
+            position:{lat: coords.latitude, lng: coords.longitude},
+            animation:google.maps.Animation.BOUNCE
+        });
+
+        var mapOptions = {
+            center: {lat: coords.latitude, lng: coords.longitude},
+            zoom: 9
+
+        };
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions,marker);
+
+        marker.setMap(map);
+        // Zoom to 13 when clicking on marker
+        google.maps.event.addListener(marker,'click',function() {
+            map.setZoom(15);
+            map.setCenter(marker.getPosition());
+        });
+
+    }
+        $ionicPlatform.ready(function(){
+            //gelocation option
+            var posOptions = {timeout: 10000, enableHighAccuracy: true};
+            $cordovaGeolocation
+                .getCurrentPosition(posOptions)
+                .then(function (position) {
+                    $scope.coords = position.coords;
+                    showMap(position.coords);
+
+
+                }, function(err) {
+                    // error
+                });
+        });
+
+
 
 });
