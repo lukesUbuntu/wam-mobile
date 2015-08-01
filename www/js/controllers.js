@@ -5,7 +5,7 @@ app.controller('DashCtrl', function($scope) {})
 //News Controller
 app.controller('NewsCtrl', function($scope) {})
 //Chats Controller
-    .controller('ChatsCtrl', function($scope, Chats) {
+    .controller('ChatsCtrl', function($scope, wamApi) {
         // With the new view caching in Ionic, Controllers are only called
         // when they are recreated or on app start, instead of every page change.
         // To listen for when this page is active (for example, to refresh data),
@@ -13,11 +13,40 @@ app.controller('NewsCtrl', function($scope) {})
         //
         //$scope.$on('$ionicView.enter', function(e) {
         //});
-
+        var prams = {
+            //getgps data
+            //longitude=174.777290&latitude=-41.306481
+            longitude : 174.777290,
+            latitude : -41.306481
+        }
+        /*
         $scope.chats = Chats.all();
         $scope.remove = function(chat) {
             Chats.remove(chat);
-        };
+        };*/
+        wamApi('getEvents', prams).then(function (response) {
+            console.log("getEvents", response)
+            if (response.success) {
+                var $data = JSON.parse(response.data);
+
+                console.log("$data",$data.events)
+
+                $.each($data.events,function(i,evnt){
+                    console.log("a",evnt.name);
+
+                    var event = {
+                        id: i,
+                        name: evnt.name,
+                        lastText: evnt.description,
+                    }
+                    events.push(event);
+                }
+
+                )
+                return events;
+            }
+
+        })
     })
 
     .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
