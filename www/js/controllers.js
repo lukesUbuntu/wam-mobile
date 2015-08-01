@@ -4,8 +4,9 @@ app.controller('DashCtrl', function($scope) {})
 
 //News Controller
 app.controller('NewsCtrl', function($scope) {})
+
 //Chats Controller
-    .controller('ChatsCtrl', function($scope, wamApi) {
+app.controller('ChatsCtrl', function($scope, wamApi) {
         // With the new view caching in Ionic, Controllers are only called
         // when they are recreated or on app start, instead of every page change.
         // To listen for when this page is active (for example, to refresh data),
@@ -28,30 +29,18 @@ app.controller('NewsCtrl', function($scope) {})
             console.log("getEvents", response)
             if (response.success) {
                 var $data = JSON.parse(response.data);
-
                 console.log("$data",$data.events)
-
-                $.each($data.events,function(i,evnt){
-                    console.log("a",evnt.name);
-
-                    var event = {
-                        id: i,
-                        name: evnt.name,
-                        lastText: evnt.description,
-                    }
-                    events.push(event);
-                }
-
-                )
-                return events;
+                $scope.events = $data.events;
             }
 
         })
-    })
+});
 
-    .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
+/*
+app.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
         $scope.chat = Chats.get($stateParams.chatId);
-    })
+})
+*/
 //Event controller
 app.controller('EventCtrl', function($scope) {
 
@@ -59,10 +48,7 @@ app.controller('EventCtrl', function($scope) {
 
 
 //Road controller
-
 app.controller('RoadCtrl', function($scope) {
-
-
 
 })
 
@@ -71,6 +57,22 @@ app.controller('RoadCtrl', function($scope) {
 app.controller('WeatherCtrl', function($scope) {
 
 })
+
+
+app.controller('ListCtrl',function($scope) {
+    $scope.notes = notes;
+})
+
+app.controller('EditCtrl',function($scope, $state){
+    $scope.note = angular.copy(getNote($state.params.noteId));
+
+    $scope.save = function(){
+        updateNote($scope.note);
+        //redirect
+        $state.go('list');
+    }
+})
+
 
 
 //global notes array
@@ -104,18 +106,3 @@ function updateNote(note){
     }
 
 }
-app.controller('ListCtrl',function($scope) {
-    $scope.notes = notes;
-})
-app.controller('EditCtrl',function($scope, $state){
-    $scope.note = angular.copy(getNote($state.params.noteId));
-
-    $scope.save = function(){
-        updateNote($scope.note);
-        //redirect
-        $state.go('list');
-    }
-})
-
-
-

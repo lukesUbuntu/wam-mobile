@@ -15,18 +15,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
-  $stateProvider
-
-  // setup an abstract state for the tabs directive
-    .state('tab', {
+    // setup an abstract state for the tabs directive
+  $stateProvider.state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
-  })
+  });
 
-  // Each tab has its own nav history stack:
-
-  .state('tab.dash', {
+    // Each tab has its own nav history stack:
+    $stateProvider .state('tab.dash', {
     url: '/dash',
     views: {
       'tab-dash': {
@@ -36,7 +33,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     }
   })
 
-  .state('tab.news', {
+    $stateProvider.state('tab.news', {
     url: '/news',
       views: {
        'tab-news': {
@@ -44,8 +41,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
         controller: 'NewsCtrl'
         }
       }
-  })
-      .state('tab.chats', {
+    });
+    $stateProvider.state('tab.chats', {
         url: '/chats',
         views: {
           'tab-chats': {
@@ -54,7 +51,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }
         }
       })
-      .state('tab.chat-detail', {
+    /*
+    $stateProvider.state('tab.chat-detail', {
         url: '/chats/:chatId',
         views: {
           'tab-chats': {
@@ -63,9 +61,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }
         }
       })
-
-  //Event-list route
-      .state('tab.event', {
+       */
+        //Event-list route
+    $stateProvider.state('tab.event', {
         url: '/event',
         views: {
           'tab-event': {
@@ -75,7 +73,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       })
   //road list route
-  .state('tab.road', {
+    $stateProvider.state('tab.road', {
         url: '/road',
         views: {
           'tab-road': {
@@ -86,7 +84,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       })
 
       //tab for weather
-      .state('tab.weather', {
+    $stateProvider.state('tab.weather', {
         url: '/weather',
         views: {
           'tab-weather': {
@@ -95,8 +93,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }
         }
       })
-
-
 
 
   // if none of the above states are matched, use this as the fallback
