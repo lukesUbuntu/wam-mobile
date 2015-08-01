@@ -75,7 +75,11 @@ app.controller('EventDetailCtrl', function($scope, $state) {
     $scope.eventId = $state.params.eventId;
 })
 
+//Event Details controller
 
+app.controller('NewsDetailCtrl', function($scope, $state) {
+    $scope.newsId = $state.params.newsId;
+})
 
 //Road controller
 app.controller('RoadCtrl', function($scope) {

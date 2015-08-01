@@ -41,6 +41,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
             }
         }
     })
+        .state('tab.news-detail', {
+            url: '/news/:newsId',
+            views: {
+                'tab-news': {
+                    templateUrl: 'templates/news-detail.html',
+                    controller: 'NewsDetailCtrl'
+                }
+            }
+        })
         //Event-list route
     $stateProvider.state('tab.event', {
         url: '/event',
