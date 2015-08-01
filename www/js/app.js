@@ -32,36 +32,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   })
-
     $stateProvider.state('tab.news', {
-    url: '/news',
-      views: {
-       'tab-news': {
-        templateUrl: 'templates/list.html',
-        controller: 'NewsCtrl'
-        }
-      }
-    });
-    $stateProvider.state('tab.chats', {
-        url: '/chats',
+        url: '/news',
         views: {
-          'tab-chats': {
-            templateUrl: 'templates/tab-chats.html',
-            controller: 'ChatsCtrl'
-          }
+            'tab-news': {
+                templateUrl: 'templates/tab-news.html',
+                controller: 'NewsCtrl'
+            }
         }
-      })
-    /*
-    $stateProvider.state('tab.chat-detail', {
-        url: '/chats/:chatId',
-        views: {
-          'tab-chats': {
-            templateUrl: 'templates/chat-detail.html',
-            controller: 'ChatDetailCtrl'
-          }
-        }
-      })
-       */
+    })
         //Event-list route
     $stateProvider.state('tab.event', {
         url: '/event',
@@ -72,6 +51,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }
         }
       })
+        .state('tab.event-detail', {
+            url: '/event/:eventId',
+            views: {
+                'tab-event': {
+                    templateUrl: 'templates/event-detail.html',
+                    controller: 'EventDetailCtrl'
+                }
+            }
+        })
   //road list route
     $stateProvider.state('tab.road', {
         url: '/road',

@@ -6,7 +6,7 @@ app.controller('DashCtrl', function($scope) {})
 app.controller('NewsCtrl', function($scope) {})
 
 //Chats Controller
-app.controller('ChatsCtrl', function($scope, wamApi) {
+app.controller('EventCtrl', function($scope, wamApi) {
         // With the new view caching in Ionic, Controllers are only called
         // when they are recreated or on app start, instead of every page change.
         // To listen for when this page is active (for example, to refresh data),
@@ -42,9 +42,11 @@ app.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
 })
 */
 //Event controller
-app.controller('EventCtrl', function($scope) {
-
+/*
+app.controller('EventDetailCtrl', function($scope,$stateParams) {
+    $scope.event = event.get($stateParams.eventId);
 })
+*/
 
 
 //Road controller
@@ -59,50 +61,6 @@ app.controller('WeatherCtrl', function($scope) {
 })
 
 
-app.controller('ListCtrl',function($scope) {
-    $scope.notes = notes;
-})
-
-app.controller('EditCtrl',function($scope, $state){
-    $scope.note = angular.copy(getNote($state.params.noteId));
-
-    $scope.save = function(){
-        updateNote($scope.note);
-        //redirect
-        $state.go('list');
-    }
-})
 
 
 
-//global notes array
-var notes = [
-    {
-        id:'1',
-        title:'First News',
-        description:'This is my first news.'
-
-    },
-    {
-        id:'2',
-        title:'Second News',
-        description:'This is my Second News.'
-    }];
-
-function getNote(noteId){
-    for(var i =0; i<notes.length; i++){
-        if(notes[i].id === noteId){
-            return notes[i];
-        }
-    }
-    return undefined;
-}
-function updateNote(note){
-    for(var i =0; i<notes.length; i++){
-        if(notes[i].id === note.id){
-            notes[i] = note;
-            return;
-        }
-    }
-
-}
