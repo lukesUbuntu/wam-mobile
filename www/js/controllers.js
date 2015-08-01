@@ -61,7 +61,7 @@ app.controller('EventCtrl', function($scope, $ionicLoading,wamApi) {
         if (response.success) {
             // var $data = JSON.parse(response.data);
             console.log("$data",response.data)
-            $scope.news_items = response.data;
+            $scope.event_items = response.data;
             $scope.hide();
         }
 

@@ -1,12 +1,19 @@
 <ion-view view-title="News">
   <ion-content>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right"
+      <ion-item class="item-remove-animate item-thumbnail-left item-icon-right"
                 ng-repeat="news in news_items" type="item-text-wrap"
                 href="#/tab/news/{{news.id}}">
-        <h2 class="list_heading">{{news.name}}</h2>
-        <p>{{news.description | limitTo:150}}</p>
-        <p class="kilo_news wam_right wam_top">{{news.distance}}<small>kms</small></p>
+        <img ng-src="http://placehold.it/32x32">
+        <div class="row">
+
+          <div class="col col-75">
+            <h2 class="list_heading">{{news.name}}</h2>
+            <p>{{news.description | limitTo:150}}</p>
+          </div>
+          <div class="col"> <p class="kilo_news wam_right ">{{news.distance}}<small>kms</small></p></div>
+        </div>
+
         <i class="icon ion-chevron-right icon-accessory"></i>
 
 

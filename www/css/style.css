@@ -22,5 +22,6 @@
 }
 /*----------------------------*/
 .list_heading{
-    font-weigt:bold;
+    font-weight:400 !important;
+    font-size:21px;
 }
