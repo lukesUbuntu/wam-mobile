@@ -32,17 +32,13 @@ app.controller('EventCtrl', function($scope, wamApi) {
         })
 });
 
-/*
-app.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-        $scope.chat = Chats.get($stateParams.chatId);
+
+//Event Details controller
+
+app.controller('EventDetailCtrl', function($scope, $state) {
+    $scope.eventId = $state.params.eventId;
 })
-*/
-//Event controller
-/*
-app.controller('EventDetailCtrl', function($scope,$stateParams,events) {
-    $scope.event = event.get($stateParams.eventId);
-})
-*/
+
 
 
 //Road controller
