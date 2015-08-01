@@ -101,6 +101,63 @@ app.config(function($stateProvider, $urlRouterProvider) {
 });
 
 
+/*------------- new factory from Maen -----------------*/
+app.factory('eventApi', function ($http) {
+  var api = {
+    path: "http:/wam.nzhost.me/api",
+    //key: ""
+    call: function (call) {
+      return this.path + call + '?callback=JSON_CALLBACK';
+    }
+  }
+  var eventApi = function (call, prams) {
+    // $http returns a promise, which has a then function, which also returns a promise
+    var promise = $http.json(api.call(call), {
+      params: prams
+    }
+    ).then(function (response) {
+          // The then function here is an opportunity to modify the response
+          console.log("eventApi response", response);
+          // The return value gets picked up by the then in the controller.
+          return response.data;
+        });
+    //return the promise to the controller
+    return promise;
+  };
+  return eventApi;
+})
+
+
+
+/*------- search controller ----------*/
+    .controller('searchEvent', function ($scope, eventApi) {
+      /*--- search event button ----*/
+      $scope.search = function (eventLoc) {
+        console.log("eventLocation", eventLoc)
+
+        /*if(typeof searchEvent == "undefined")*/
+
+        $scope.show();
+        var params = {
+          latitude : 51.508742,
+          longtitude : -0.120850
+        }
+        eventApi('getDetails', prams).then(function (response) {
+          console.log("getDetails", response)
+          if(response.success) {
+            $scope.eventInfo = response.data;
+            $scope.searchResults = true;
+          }
+          else{
+            $scope.showAlert(response.data)
+            console.log("bad response", response);
+          }
+          setTimeout(function () {$scope.hide();}, 100)
+        })
+      }
+    });
+
+
 
 
 app.run(function($ionicPlatform) {
