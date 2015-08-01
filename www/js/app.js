@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('starter', ['ionic', 'starter.controllers'])
+var app = angular.module('starter', ['ionic','ngCordova', 'starter.controllers'])
 
 
 
@@ -22,16 +22,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: 'templates/tabs.html'
   });
 
-    // Each tab has its own nav history stack:
-    $stateProvider .state('tab.dash', {
-    url: '/dash',
-    views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
-      }
-    }
-  })
+
     $stateProvider.state('tab.news', {
         url: '/news',
         views: {
