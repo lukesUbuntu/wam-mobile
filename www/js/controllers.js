@@ -40,6 +40,8 @@ app.controller('NewsCtrl', function($scope,$ionicLoading,wamApi) {
 
     $scope.show();
     //get the events
+
+
     wamApi('getNews', prams).then(function (response) {
         //console.log("getNews", response)
         if (response.success) {

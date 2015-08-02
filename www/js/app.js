@@ -91,7 +91,26 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 
 
-app.run(function($ionicPlatform) {
+app.run(function($ionicPlatform,$cordovaGeolocation ) {
+    //gelocation option
+    var posOptions = {timeout: 10000, enableHighAccuracy: true};
+    $cordovaGeolocation
+        .getCurrentPosition(posOptions)
+        .then(function (position) {
+            //$scope.coords = position.coords;
+            // showMap(position.coords);
+            //latitude: -41.3062287
+            //longitude: 174.777496
+            //$rootScope.latitude = position.latitude;
+            app.value('latitude',  position.longitude);
+            app.value('longitude', position.latitude);
+
+            //$rootScope.longitude = position.longitude
+            //console.log("position",position.latitude)
+
+        }, function(err) {
+            // error
+        });
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -104,5 +123,9 @@ app.run(function($ionicPlatform) {
       // org.apache.cordova.statusbar required
       StatusBar.styleLightContent();
     }
+
+
+
+
   });
 })
