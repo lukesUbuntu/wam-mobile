@@ -1,14 +1,28 @@
 <ion-view view-title="Road">
-  <ion-content >
-    <div class="list card">
-      <div class="item item-image">
-        <img ng-src="{{pictureUrl}}" class="take_photo"/>
-      </div>
-    </div>
-    <div class="padding">
-      <button ng-click="takePicture()" class="button button-block button-calm">
-        Take Picture
-      </button>
-    </div>
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate item-thumbnail-left item-icon-right"
+                ng-repeat="issue in road_events" type="item-text-wrap"
+                href="#/tab/road/{{road.id}}">
+        <!--
+        <img ng-src="http://placehold.it/32x32">!-->
+        <div class="row">
+
+          <div class="col col-75">
+            <h2 class="list_heading">{{issue.properties.locationArea}}</h2>
+            <p>{{issue.properties.eventComments | limitTo:150}}</p>
+          </div>
+          <div class="col"> <p class="kilo_news wam_right ">{{issue.distance}}<small>kms</small></p></div>
+        </div>
+
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+
+        <!-- We will used it if we have time
+        <ion-option-button class="button-assertive" ng-click="remove(event)">
+          Delete
+        </ion-option-button>-->
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>
