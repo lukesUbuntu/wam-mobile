@@ -7,8 +7,12 @@
 // 'starter.controllers' is found in controllers.js
 var app = angular.module('starter', ['ionic','ngCordova', 'starter.controllers'])
 
-
-
+app.filter('decode', function() {
+    return window.btoa;
+});
+app.filter('encode', function() {
+    return window.atob;
+});
 app.config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -32,7 +36,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
             }
         }
     })
-
+        .state('tab.news-detail', {
+            url: '/news/:newsId/:newsName/:newsDescription/:newsDistance',
+            views: {
+                'tab-news': {
+                    templateUrl: 'templates/news-detail.html',
+                    controller: 'NewsDetailCtrl'
+                }
+            }
+        })
         //Event-list route
     $stateProvider.state('tab.event', {
         url: '/event',
@@ -44,7 +56,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       })
         .state('tab.event-detail', {
-            url: '/event/:eventId/:eventName',
+            url: '/event/:eventId/:eventName/:eventDescription',
             views: {
                 'tab-event': {
                     templateUrl: 'templates/event-detail.html',
@@ -62,7 +74,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }
         }
       })
-
+        .state('tab.road-detail', {
+            url: '/road/:roadId/:roadName/:roadDescription/:roadDistance',
+            views: {
+                'tab-road': {
+                    templateUrl: 'templates/road-detail.html',
+                    controller: 'RoadDetailCtrl'
+                }
+            }
+        })
       //tab for weather
     $stateProvider.state('tab.weather', {
         url: '/weather',

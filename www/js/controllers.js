@@ -15,6 +15,8 @@
  });
  });
  */
+
+
 var prams = {
     //get gps data
     //longitude=174.777290&latitude=-41.306481
@@ -27,7 +29,7 @@ var app = angular.module('starter.controllers', [])
 app.controller('DashCtrl', function($scope) {})
 
 //News Controller
-app.controller('NewsCtrl', function($scope,$ionicLoading,wamApi,$state) {
+app.controller('NewsCtrl', function($scope,$ionicLoading,wamApi) {
 
     $scope.show = function () {
         $ionicLoading.show({
@@ -37,23 +39,7 @@ app.controller('NewsCtrl', function($scope,$ionicLoading,wamApi,$state) {
     $scope.hide = function () {
         $ionicLoading.hide();
     };
-    $scope.test = function(news){
-        console.log("news",news);
-        //$location.url("news/23")
 
-        $state.go('tab.news-detail', {
-            //'path/:id/:anotherParam/'
-            url: '/news/news',
-            views: {
-                'tab-news': {
-                    templateUrl: 'templates/news-detail.html',
-                    controller: 'NewsDetailCtrl'
-                }
-            }
-        })
-       // $state.go("/news/2");
-
-    }
     $scope.show();
     //get the events
 
@@ -108,19 +94,18 @@ app.controller('EventCtrl', function($scope, $ionicLoading,wamApi) {
 app.controller('EventDetailCtrl', function($scope, $state) {
     $scope.eventId = $state.params.eventId;
     $scope.eventName = $state.params.eventName;
-
+    $scope.eventDescription = $state.params.eventDescription;
+   // $scope.eventThumbnail = $state.params.eventThumbnail;
 })
 
-//Event Details controller
+//News Details controller
 
-app.controller('NewsDetailCtrl', function($scope, $state , $stateParams) {
+app.controller('NewsDetailCtrl', function($scope, $state ) {
     $scope.newsId = $state.params.newsId;
-    $scope.news = $state.params.news;
-    //$stateParams.myParam
-    $state.params;
-    $stateParams;
-    console.log("$state.news",$stateParams);
-    console.log("$state.news",$scope.news);
+    $scope.newsName = $state.params.newsName;
+    $scope.newsDistance = $state.params.newsDistance;
+    $scope.newsDescription = $state.params.newsDescription;
+
 
 
 })
@@ -171,27 +156,39 @@ app.controller('RoadCtrl', function($scope , $ionicLoading,wamApi) {
     }*/
 })
 
+//News Details controller
 
+app.controller('RoadDetailCtrl', function($scope, $state ) {
+    $scope.roadId = $state.params.roadId;
+    $scope.roadName = $state.params.roadName;
+    $scope.roadDistance = $state.params.roadDistance;
+    $scope.roadDescription = $state.params.roadDescription;
+
+
+
+})
 //Weather
 app.controller('WeatherCtrl', function($scope, $cordovaGeolocation, $ionicPlatform) {
 
 
     function showMap(coords) {
+        //google map marker
         var marker=new google.maps.Marker({
             position:{lat: coords.latitude, lng: coords.longitude},
             animation:google.maps.Animation.BOUNCE
         });
-
+        //map options
         var mapOptions = {
             center: {lat: coords.latitude, lng: coords.longitude},
             zoom: 9
 
         };
+        //bind to html div id to map and marker
         var map = new google.maps.Map(document.getElementById('map-canvas'),
             mapOptions,marker);
 
         marker.setMap(map);
-        // Zoom to 13 when clicking on marker
+        // Zoom to 15 when clicking on marker
         google.maps.event.addListener(marker,'click',function() {
             map.setZoom(15);
             map.setCenter(marker.getPosition());

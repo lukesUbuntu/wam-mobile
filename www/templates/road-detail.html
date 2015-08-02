@@ -4,12 +4,13 @@
   The FriendsCtrl pulls data from the Friends service (service.js)
   The Friends service returns an array of friend data
 -->
-<ion-view view-title="{{eventId}}">
-  <ion-content class="padding">
+<ion-view view-title="{{roadId}}">
+  <ion-content class="padding"  >
 
-    <p>This Article Id is {{eventId}}</p>
-    <h2 class="h2_detail">{{eventName}}</h2>
-    <p class="h2_detail">{{eventDescription}}</p>
+    <p>This news Id : {{roadId}}</p>
+    <h2>{{roadName}}</h2>
+    <h4>{{roadDistance}} : Kms far from you.</h4>
+    <p>{{roadDescription}}</p>
 
 
   </ion-content>
