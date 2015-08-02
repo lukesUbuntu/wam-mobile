@@ -1,11 +1,11 @@
 <ion-view view-title="Event">
     <ion-content>
         <ion-list>
-            <ion-item class="item-remove-animate   item-icon-right"
+            <ion-item class="item-remove-animate item-thumbnail-left item-icon-right"
                       ng-repeat="event in event_items" type="item-text-wrap"
                       href="#/tab/event/{{event.id}}">
 
-
+                <img ng-src="{{event.thumbnail}}">
                 <div class="row">
 
                     <div class="col col-75">

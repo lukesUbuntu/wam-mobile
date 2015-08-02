@@ -44,7 +44,7 @@ app.controller('NewsCtrl', function($scope,$ionicLoading,wamApi) {
         //console.log("getNews", response)
         if (response.success) {
            // var $data = JSON.parse(response.data);
-            console.log("$data",response.data)
+            console.log("getNews",response.data)
             $scope.news_items = response.data;
             $scope.hide();
         }
@@ -76,7 +76,7 @@ app.controller('EventCtrl', function($scope, $ionicLoading,wamApi) {
         //console.log("getEvents", response)
         if (response.success) {
             // var $data = JSON.parse(response.data);
-            console.log("$data",response.data)
+            console.log("getEvents",response.data)
             $scope.event_items = response.data;
             $scope.hide();
         }
