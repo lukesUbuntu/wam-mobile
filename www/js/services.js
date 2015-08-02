@@ -12,9 +12,9 @@ app.factory('wamApi', function ($http) {
       return this.path + call + '?callback=JSON_CALLBACK';
     }
   }
-  var wamApi = function (call, prams,longitude) {
+  var wamApi = function (call, prams) {
     // $http returns a promise, which has a then function, which also returns a promise
-      console.log("longitude",longitude)
+
     var promise = $http.jsonp(api.call(call), {
           params: prams
         }

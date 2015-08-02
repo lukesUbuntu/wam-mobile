@@ -27,7 +27,7 @@ var app = angular.module('starter.controllers', [])
 app.controller('DashCtrl', function($scope) {})
 
 //News Controller
-app.controller('NewsCtrl', function($scope,$ionicLoading,wamApi) {
+app.controller('NewsCtrl', function($scope,$ionicLoading,wamApi,$state) {
 
     $scope.show = function () {
         $ionicLoading.show({
@@ -37,7 +37,23 @@ app.controller('NewsCtrl', function($scope,$ionicLoading,wamApi) {
     $scope.hide = function () {
         $ionicLoading.hide();
     };
+    $scope.test = function(news){
+        console.log("news",news);
+        //$location.url("news/23")
 
+        $state.go('tab.news-detail', {
+            //'path/:id/:anotherParam/'
+            url: '/news/news',
+            views: {
+                'tab-news': {
+                    templateUrl: 'templates/news-detail.html',
+                    controller: 'NewsDetailCtrl'
+                }
+            }
+        })
+       // $state.go("/news/2");
+
+    }
     $scope.show();
     //get the events
 
@@ -91,12 +107,20 @@ app.controller('EventCtrl', function($scope, $ionicLoading,wamApi) {
 
 app.controller('EventDetailCtrl', function($scope, $state) {
     $scope.eventId = $state.params.eventId;
+    $scope.eventName = $state.params.eventName;
+
 })
 
 //Event Details controller
 
-app.controller('NewsDetailCtrl', function($scope, $state) {
+app.controller('NewsDetailCtrl', function($scope, $state , $stateParams) {
     $scope.newsId = $state.params.newsId;
+    $scope.news = $state.params.news;
+    //$stateParams.myParam
+    $state.params;
+    $stateParams;
+    console.log("$state.news",$stateParams);
+    console.log("$state.news",$scope.news);
 
 
 })

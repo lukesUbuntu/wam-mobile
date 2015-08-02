@@ -32,15 +32,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
             }
         }
     })
-        .state('tab.news-detail', {
-            url: '/news/:newsId',
-            views: {
-                'tab-news': {
-                    templateUrl: 'templates/news-detail.html',
-                    controller: 'NewsDetailCtrl'
-                }
-            }
-        })
+
         //Event-list route
     $stateProvider.state('tab.event', {
         url: '/event',
@@ -52,7 +44,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       })
         .state('tab.event-detail', {
-            url: '/event/:eventId',
+            url: '/event/:eventId/:eventName',
             views: {
                 'tab-event': {
                     templateUrl: 'templates/event-detail.html',
@@ -91,7 +83,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 
 
-app.run(function($ionicPlatform,$cordovaGeolocation ) {
+app.run(function($ionicPlatform,$cordovaGeolocation) {
     //gelocation option
     var posOptions = {timeout: 10000, enableHighAccuracy: true};
     $cordovaGeolocation
@@ -102,8 +94,9 @@ app.run(function($ionicPlatform,$cordovaGeolocation ) {
             //latitude: -41.3062287
             //longitude: 174.777496
             //$rootScope.latitude = position.latitude;
-            app.value('latitude',  position.longitude);
-            app.value('longitude', position.latitude);
+           // $rootScope.latitude = position.latitude;
+            //app.value('latitude',  position.longitude);
+            //app.value('longitude', position.latitude);
 
             //$rootScope.longitude = position.longitude
             //console.log("position",position.latitude)

@@ -2,8 +2,8 @@
   <ion-content>
     <ion-list>
       <ion-item class="item-remove-animate item-thumbnail-left item-icon-right"
-                ng-repeat="news in news_items" type="item-text-wrap"
-                href="#/tab/news/{{news.id}}">
+                ng-repeat="news in news_items" type="item-text-wrap" ng-click="test(news)"
+               >
         <img ng-src="{{news.imageUrl}}">
 
         <div class="row">
