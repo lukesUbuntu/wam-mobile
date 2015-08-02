@@ -1,4 +1,20 @@
 //need to replace with phone locations
+/*
+ $ionicPlatform.ready(function(){
+ //gelocation option
+ var posOptions = {timeout: 10000, enableHighAccuracy: true};
+ $cordovaGeolocation
+ .getCurrentPosition(posOptions)
+ .then(function (position) {
+ $scope.coords = position.coords;
+ showMap(position.coords);
+
+
+ }, function(err) {
+ // error
+ });
+ });
+ */
 var prams = {
     //get gps data
     //longitude=174.777290&latitude=-41.306481
@@ -34,7 +50,7 @@ app.controller('NewsCtrl', function($scope,$ionicLoading,wamApi) {
         }
 
     })
-})
+});
 
 //Chats Controller
 app.controller('EventCtrl', function($scope, $ionicLoading,wamApi) {
@@ -84,11 +100,32 @@ app.controller('NewsDetailCtrl', function($scope, $state) {
 })
 
 //Road controller
-app.controller('RoadCtrl', function($scope , $cordovaCamera) {
-    $scope.pictureUrl = "http://placehold.it/300x300";
+app.controller('RoadCtrl', function($scope , $ionicLoading,wamApi) {
 
+    $scope.show = function () {
+        $ionicLoading.show({
+            template: 'Loading...'
+        });
+    };
+    $scope.hide = function () {
+        $ionicLoading.hide();
+    };
 
+    $scope.show();
+    //get the events
+    wamApi('getRoadWorks', prams).then(function (response) {
+        //console.log("getEvents", response)
+        if (response.success) {
+            // var $data = JSON.parse(response.data);
+            console.log("getRoadWorks",response.data)
+            $scope.road_events = response.data;
+            $scope.hide();
+        }
 
+    })
+
+    /*
+     $scope.pictureUrl = "http://placehold.it/300x300";
     $scope.takePicture = function(options){
         //define the options for images Url path and type
         var options = {
@@ -105,7 +142,7 @@ app.controller('RoadCtrl', function($scope , $cordovaCamera) {
         },function(error){
                 console.log('camera error:' + angular.toJson(data));
         });
-    }
+    }*/
 })
 
 
