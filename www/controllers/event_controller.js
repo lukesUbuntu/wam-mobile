@@ -25,14 +25,15 @@ angular.module('WAM').controller('EventCtrl', function($scope,$state, $ionicLoad
 
     })
 
+
 $scope.geteventdetail = function (info){
 
 
     event_service.selected_event = info;
 
-
-    console.log('this event from the event controller is: ',info.id );
-    console.log('the event from the event service is: ', event_service.selected_event );
+   // test that the data is being passed correctly
+   // console.log('this event from the event controller is: ',info.id );
+   // console.log('the event from the event service is: ', event_service.selected_event );
     $state.go("event_details");
 }
 

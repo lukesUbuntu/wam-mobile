@@ -66,6 +66,6 @@ angular.module('WAM', ['ionic'])
 
 
 
-        $urlRouterProvider.otherwise('app.news');
+        $urlRouterProvider.otherwise('news');
 
 });

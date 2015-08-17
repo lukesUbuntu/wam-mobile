@@ -34,41 +34,44 @@
 
   <body ng-app="WAM">
     <ion-nav-bar class="bar bar-header bar-balanced"  ng-controller="homectrl">
-      <ion-nav-buttons side="left">
-        <button menu-toggle="left" ng-click="toggleLeft()" class="button button-icon icon ion-navicon"></button>
+        <ion-nav-buttons side="left">
+            <button class="button button-icon icon ion-navicon"></button>
+            </ion-nav-buttons>
     </ion-nav-bar>
+
+
     <ion-nav-view>
-
-
-      <!-- Left menu -->
-
-
       <!---Page goes here..-->
 
 
     </ion-nav-view>
 
+
+
+    <!-- need to create a proper footer this is overlapping the main page-->
+
     <ion-tabs class="  bar-balanced  tabs-icon-top tabs-color-active-positive">
 
-      <!--News -->
-      <ion-tab title="News" icon-off="ion-ios-pulse-strong" icon-on="ion-ios-pulse" href="#/news">
-        <ion-nav-view name="news"></ion-nav-view>
-      </ion-tab>
+        <!--News -->
+        <ion-tab title="News" icon-off="ion-ios-pulse-strong" icon-on="ion-ios-pulse" href="#/news">
+            <ion-nav-view name="news"></ion-nav-view>
+        </ion-tab>
 
 
-      <!-- Event -->
-      <ion-tab title="Event" icon-off="ion-ios-people-outline" icon-on="ion-ios-people" href="#/events">
-        <ion-nav-view name="event"></ion-nav-view>
-      </ion-tab>
+        <!-- Event -->
+        <ion-tab title="Event" icon-off="ion-ios-people-outline" icon-on="ion-ios-people" href="#/events">
+            <ion-nav-view name="event"></ion-nav-view>
+        </ion-tab>
 
 
-      <!-- Road -->
-      <ion-tab title="Traffic" icon-off="ion-android-car" icon-on="ion-android-car" href="#/traffic">
-        <ion-nav-view name="traffic"></ion-nav-view>
-      </ion-tab>
+        <!-- Road -->
+        <ion-tab title="Traffic" icon-off="ion-android-car" icon-on="ion-android-car" href="#/traffic">
+            <ion-nav-view name="traffic"></ion-nav-view>
+        </ion-tab>
 
 
     </ion-tabs>
+
 
   </body>
 
