@@ -1,32 +1,50 @@
 angular.module('starter.services', [])
 
-/**
- * Handles our api calls to server
- */
-app.factory('wamApi', function ($http) {
-      var api = {
-    //http://wam.nzhost.me/api/getEvents/?longitude=174.777290&latitude=-41.306481
-    path: "http://wam.nzhost.me/api/",
-    key: "",//note implmented
-    call: function (call) {
-      return this.path + call + '?callback=JSON_CALLBACK';
-    }
-  }
-  var wamApi = function (call, prams,longitude) {
-    // $http returns a promise, which has a then function, which also returns a promise
-      console.log("longitude",longitude)
-    var promise = $http.jsonp(api.call(call), {
-          params: prams
-        }
-    ).then(function (response) {
-          // The then function here is an opportunity to modify the response
-          //console.log("wamApi response", response);
-          // The return value gets picked up by the then in the controller.
-          return response.data;
-        });
-    // Return the promise to the controller
-    return promise;
+.factory('Chats', function() {
+  // Might use a resource here that returns a JSON array
 
+  // Some fake testing data
+  var chats = [{
+    id: 0,
+    name: 'Ben Sparrow',
+    lastText: 'You on your way?',
+    face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png'
+  }, {
+    id: 1,
+    name: 'Max Lynx',
+    lastText: 'Hey, it\'s me',
+    face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460'
+  }, {
+    id: 2,
+    name: 'Adam Bradleyson',
+    lastText: 'I should buy a boat',
+    face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg'
+  }, {
+    id: 3,
+    name: 'Perry Governor',
+    lastText: 'Look at my mukluks!',
+    face: 'https://pbs.twimg.com/profile_images/598205061232103424/3j5HUXMY.png'
+  }, {
+    id: 4,
+    name: 'Mike Harrington',
+    lastText: 'This is wicked good ice cream.',
+    face: 'https://pbs.twimg.com/profile_images/578237281384841216/R3ae1n61.png'
+  }];
+
+  return {
+    all: function() {
+      return chats;
+    },
+    remove: function(chat) {
+      chats.splice(chats.indexOf(chat), 1);
+    },
+    get: function(chatId) {
+      for (var i = 0; i < chats.length; i++) {
+        if (chats[i].id === parseInt(chatId)) {
+          return chats[i];
+        }
+      }
+      return null;
+    }
   };
-  return wamApi;
 });

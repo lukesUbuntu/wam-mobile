@@ -1,12 +1,4 @@
 {
-  "name": "myApp",
-  "app_id": "",
-  "gulpStartupTasks": [
-    "sass",
-    "watch"
-  ],
-  "watchPatterns": [
-    "www/**/*",
-    "!www/lib/**/*"
-  ]
+  "name": "wam_mobile",
+  "app_id": ""
 }
